@@ -1,0 +1,45 @@
+.close-popup X
+#popup-content
+	#details-title.basics
+		strong= Title
+	if Distributors
+		fieldset#details-distributor-contact
+			legend Distributor Contact Information
+			each distributor in Distributors
+				.distributor-container
+					if distributor.Name
+						.distributor-name
+							strong Name: 
+							span= distributor.Name
+					if distributor.OrganizationName
+						.distributor-org-name
+							strong Organization Name: 
+							span= distributor.OrganizationName
+					if distributor.ContactInformation
+						if distributor.ContactInformation.Address
+							if distributor.ContactInformation.Address.Street
+								.distributor-street
+									strong Street: 
+									span= distributor.ContactInformation.Address.Street
+							if distributor.ContactInformation.Address.City
+								.distributor-city
+									strong City: 
+									span= distributor.ContactInformation.Address.City
+							if distributor.ContactInformation.Address.State
+								.distributor-state
+									strong State: 
+									span= distributor.ContactInformation.Address.State
+							if distributor.ContactInformation.Address.Zip
+								.distributor-zip
+									strong Zip: 
+									span= distributor.ContactInformation.Address.Zip
+						if distributor.ContactInformation.Phone
+							.distributor-phone
+								strong Phone: 
+								span= distributor.ContactInformation.Phone
+						if distributor.ContactInformation.email
+							.distributor-email
+								strong Email: 
+								span= distributor.ContactInformation.email
+	else
+		strong No Distributor Information was Provided

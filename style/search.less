@@ -1,0 +1,408 @@
+@header-color: #EDF8FA; //#DFEDF0;
+@border-color: darken(@header-color, 10%);
+@highlight-color: #F08B6F;
+@highlight-minor-emphasis-color: lighten(@highlight-color, 40%);
+@text-emphasis-color: darken(@header-color, 60%);
+@text-minor-emphasis-color: darken(@border-color, 20%);
+@font: Calibri, sans-serif;
+// Mix-ins and simple classes
+.action-button(@lighten: 0%) {
+  height: 30px;
+  color: white;
+  line-height: 30px;
+  font-weight: bold;
+  text-align: center;
+  background-color: lighten(@highlight-color, @lighten);
+  border: 1px solid darken(@highlight-color, 10%);
+  border-radius: 3px;
+  &:hover {
+    cursor: pointer;
+    background-color: darken(@highlight-color, 3%)
+  }
+}
+
+.action-button-highlight {
+  -moz-box-shadow: 0px 2px 5px 6px @header-color;
+  -webkit-box-shadow: 0px 2px 5px 6px @header-color;
+  box-shadow: 0px 2px 5px 6px @header-color;  
+}
+
+.hidden {
+  display: none;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.clear-float:after {
+  content: "."; 
+  visibility: hidden; 
+  display: block; 
+  height: 0; 
+  clear: both;
+}
+
+body {
+  font-family: @font;
+  padding: 0px;
+  margin: 0px;
+}
+
+a img {
+  border: none;
+}
+
+// Header Content
+#header {
+  background-color: @header-color;
+  border-bottom: 1px solid @border-color;
+  padding: 10px;
+  
+  #geotherm-icon {
+    float: left;
+  }
+  
+  #search-container {
+    float: left;    
+    margin-left: 20px;
+    margin-top: 25px;
+    
+    #search-bar {
+      float: left;    
+      height: 20px;
+      width: 500px;
+      font-size: 16px;
+      padding: 5px;
+      border: 1px solid @border-color;
+      border-top: 1px solid darken(@border-color, 15%);
+      border-right: 1px solid darken(@border-color, 15%);
+      &:hover {
+        border: 1px solid darken(@border-color, 20%);
+      }
+    }
+    
+    #search-button {
+      .action-button;
+      float: right;
+      margin-left: 15px;
+      width: 60px;
+    }
+  }
+}
+
+// Search Map related buffoonery
+.map-area-button {
+  float: left;
+  margin-left: 25px;
+  .action-button;
+  border-top: 0px;
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  min-width: 200px;
+  padding: 0px 5px;
+  #map-show-icon {
+    float: left;
+    border-radius: 50%;
+    height: 22px;
+    width: 22px;
+    margin-left: 5px;
+    position: relative;
+    top: 4px;
+    background-color: darken(@header-color, 3%);
+    border: 1px solid @border-color; 
+    .arrows {
+      width: 0px;
+      height: 0px;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      position: relative;
+      left: 3px;      
+    }   
+    .down-arrow {
+      .arrows;
+      border-top: 12px solid lighten(@highlight-color, 10%);
+      top: 6px;       
+    }
+    .up-arrow {
+      .arrows;
+      border-bottom: 12px solid lighten(@highlight-color, 10%);
+      top: 3px; 
+    }
+  }
+}
+
+#define-map-area {
+  div {    
+    position: absolute;
+  }
+}
+
+#map-area {
+  height: 250px;  
+  border-bottom: 1px solid @border-color;
+}
+
+// Tools and Results Stuff
+#main-container {
+  padding-top: 20px;
+}
+
+.sidebar-link {
+  font-weight: bold;
+  
+}
+
+#left-sidebar {
+  border-right: 1px solid @border-color;
+  padding-right: 10px;
+  position: relative;
+  .link-container {
+    min-height: 82px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .access-options-title {
+      font-weight: bold;
+      color: @highlight-color;
+      margin-top: 10px;
+    }
+    .access-options {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      border: 1px solid @highlight-color;
+      border-radius: 3px; 
+      list-style-type: none;
+      padding-left: 0px;
+      padding-bottom: 3px;
+      padding-top: 3px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+      li {
+        font-size: 0.8em;
+        padding-left: 5px;
+      }
+    }
+  }
+  .sidebar-link {
+    font-weight: bold;
+    color: @text-emphasis-color;    
+    text-decoration: none;
+    &:hover {
+      color: @text-minor-emphasis-color;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  }
+}
+
+.left-sidebar {
+  width: 150px;
+  float: left;
+  padding-left: 15px;
+}
+
+.results {
+  padding-left: 200px;
+  padding-right: 15px;
+}
+
+@sub-header-height: 60px;
+#sub-header {
+  border-bottom: 1px solid @border-color;
+  height: @sub-header-height;
+  line-height: @sub-header-height;
+  color: @text-emphasis-color;
+  font-weight: bold;
+  font-size: 1.1em; 
+  #tools-title {
+    .left-sidebar;
+  }
+  #results-title {
+    .results;
+    span {
+      margin-left: 15px;
+      font-weight: normal;
+      font-size: 0.9em;
+      color: @text-minor-emphasis-color;
+    }
+  }
+}
+
+#refresher {
+  margin-left: 200px;
+  margin-right: 20px;  
+  border-radius: 5px;
+  background-color: @header-color;
+  border: 1px solid @border-color;
+  color: @text-emphasis-color;
+  span {
+    margin-left: 25px;
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+.result-container {    
+  padding: 5px;
+  margin-bottom: 10px;
+  .result-title {
+    color: @text-emphasis-color;
+    font-weight: bold;
+  }
+  .keyword:hover {
+    text-decoration: underline;
+  }
+  .result-keywords {
+    margin-top: 5px;
+    color: @highlight-color;
+    font-size: 0.8em;
+    span {
+      padding: 3px 3px;      
+    }
+  }
+  .result-info {
+    font-size: 0.8em;
+    color: @text-minor-emphasis-color;
+  }
+  &:hover {
+    background-color: @header-color;
+    cursor: pointer;
+  }
+}
+
+.pointer {
+  height: 60px;
+  width: 25px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid @border-color;
+  border-right: none;
+  left: 170px;
+  text-align: center;
+  .left-arrow {
+    height: 0px;
+    width: 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid @border-color;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .vertHelper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+// Paginator
+.paginator-button {
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+// Details View
+#details-popup {
+  width: 700px;  
+  border: 4px solid @border-color;
+  border-radius: 5px;
+  background-color: @header-color;
+  position: absolute;
+  padding: 5px;
+  .close-popup {
+    height: 16px;
+    width: 16px;
+    border: 1px solid darken(@highlight-color, 10%);
+    border-radius: 3px;
+    background-color: lighten(@highlight-color, 10%);
+    color: white;
+    font-weight: bold;
+    line-height: 16px;
+    text-align: center;    
+    float: right;
+    &:hover {
+      cursor: pointer;
+      background-color: darken(@highlight-color, 3%);
+    }
+  }
+  .basics {
+    margin-bottom: 5px;
+  }
+  #details-title {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+  #details-author, #details-published {
+    font-size: 0.8em;
+  }
+}
+
+// OpenLayers LayerSwitcher control
+.olControlLayerSwitcher {
+  font-family: @font;
+  color: @text-emphasis-color;
+  .layersDiv {
+    background-color: @header-color;
+    border: 1px solid @border-color;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+  #OpenLayers_Control_MinimizeDiv {
+    right: 10px;
+  }
+}
+
+// Preview Table
+#preview-container {
+  overflow: auto;
+  font-size: 0.8em;
+  max-height: 500px;
+  #feature-type-tabs {
+    list-style-type: none;
+    padding-left: 0px;
+    margin: 0px;    
+    li {
+      display: inline;
+      padding: 3px 10px;
+      background-color: @header-color;
+      border: 1px solid @border-color;
+      border-radius: 3px;
+      border-bottom: none;
+      height: 25px;
+      line-height: 25px;
+      color: @text-minor-emphasis-color;
+      &:hover {
+        background-color: white;
+        cursor: pointer;
+      }
+      &.selected-tab {
+        background-color: white !important;
+        color: black !important;
+      }
+    }
+  }
+  #preview-table {        
+    margin-top: 0px;
+    border: 1px solid @border-color;
+    border-collapse: collapse;
+    border-spacing: 0px;    
+    th, td {
+      border: 1px solid @border-color;
+      padding: 3px 5px;
+    }    
+    th {
+      font-weight: bold;
+      color: @text-emphasis-color;
+      background-color: @header-color;   
+    }
+    tr, td { height: 25px !important; } // Doesn't seem to work.
+    tr.bg { background-color: white; } 
+    //tr:nth-child(odd) { background-color: white; }
+    //tr:nth-child(even) { background-color: lighten(@header-color, 20%); }  
+  }  
+}
+
+
+

@@ -1,0 +1,9 @@
+.close-popup X
+#popup-content
+	#details-title.basics
+		strong= Title
+	#preview-container
+		ul#feature-type-tabs
+			each type in featureTypes
+				li(typeName="#{type.prefix}:#{type.name}").type-tab= type.name
+		table#preview-table

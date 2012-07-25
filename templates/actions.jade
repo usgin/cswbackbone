@@ -1,0 +1,15 @@
+.link-container
+	.full-description.sidebar-link More Details
+	.show-on-map.sidebar-link Show Area on Map
+	a(href= xmlUrl, target="_blank").view-metadata.sidebar-link Full XML Metadata
+	.access-options-title Access Options
+	ul.access-options
+		each action in actions
+			if action.anchor
+				li
+					a(href= action.url).sidebar-link= action.label
+			else
+				li(class="#{action.className} sidebar-link", link= action.url)= action.label		
+		li.contact-distributor.sidebar-link Contact Distributor	
+	
+	

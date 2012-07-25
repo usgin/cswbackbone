@@ -1,0 +1,12 @@
+tr
+	each column in columns
+		th= column
+each feature, index in features
+	if index % 2 == 0
+		tr.bg
+			each attr in feature			
+				td= attr
+	else
+		tr
+			each attr in feature			
+				td= attr						

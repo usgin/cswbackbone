@@ -1,0 +1,103 @@
+- var authorName = Authors != null && Authors.length > 0 && Authors[0].Name != '' && Authors[0].Name != 'Missing' ? Authors[0].Name : "No Author Provided"
+.close-popup X
+#popup-content
+	#details-title.basics
+		strong= Title
+	#details-author.basics by #{authorName}
+	#details-published.basics Published on #{pubDate}
+	#details-description.basics
+		strong Description: 
+		span= Description
+	if Authors
+		fieldset#details-author-contact
+			legend Author Contact Information
+			each author in Authors
+				.author-container
+					if author.Name
+						.author-name
+							strong Name: 
+							span= author.Name
+					if author.OrganizationName
+						.author-org-name
+							strong Organization Name: 
+							span= author.OrganizationName
+					if author.ContactInformation
+						if author.ContactInformation.Address
+							if author.ContactInformation.Address.Street
+								.author-street
+									strong Street: 
+									span= author.ContactInformation.Address.Street
+							if author.ContactInformation.Address.City
+								.author-city
+									strong City: 
+									span= author.ContactInformation.Address.City
+							if author.ContactInformation.Address.State
+								.author-state
+									strong State: 
+									span= author.ContactInformation.Address.State
+							if author.ContactInformation.Address.Zip
+								.author-zip
+									strong Zip:  
+									span= author.ContactInformation.Address.Zip	
+						if author.ContactInformation.Phone
+							.author-phone
+								strong Phone: 
+								span= author.ContactInformation.Phone
+						if author.ContactInformation.email
+							.author-email
+								strong Email: 
+								span= author.ContactInformation.email								
+	if Distributors
+		fieldset#details-distributor-contact
+			legend Distributor Contact Information
+			each distributor in Distributors
+				.distributor-container
+					if distributor.Name
+						.distributor-name
+							strong Name: 
+							span= distributor.Name
+					if distributor.OrganizationName
+						.distributor-org-name
+							strong Organization Name: 
+							span= distributor.OrganizationName
+					if distributor.ContactInformation
+						if distributor.ContactInformation.Address
+							if distributor.ContactInformation.Address.Street
+								.distributor-street
+									strong Street: 
+									span= distributor.ContactInformation.Address.Street
+							if distributor.ContactInformation.Address.City
+								.distributor-city
+									strong City: 
+									span= distributor.ContactInformation.Address.City
+							if distributor.ContactInformation.Address.State
+								.distributor-state
+									strong State: 
+									span= distributor.ContactInformation.Address.State
+							if distributor.ContactInformation.Address.Zip
+								.distributor-zip
+									strong Zip: 
+									span= distributor.ContactInformation.Address.Zip
+						if distributor.ContactInformation.Phone
+							.distributor-phone
+								strong Phone: 
+								span= distributor.ContactInformation.Phone
+						if distributor.ContactInformation.email
+							.distributor-email
+								strong Email: 
+								span= distributor.ContactInformation.email
+	if GeographicExtent
+		fieldset#details-geographic-extent
+			legend Geographic Extent
+			.north-bound
+				strong North Bounding Latitude: 
+				span= GeographicExtent.NorthBound
+			.south-bound
+				strong South Bounding Latitude: 
+				span= GeographicExtent.SouthBound
+			.east-bound
+				strong East Bounding Longitude: 
+				span= GeographicExtent.EastBound
+			.west-bound
+				strong West Bounding Longitude: 
+				span= GeographicExtent.WestBound
