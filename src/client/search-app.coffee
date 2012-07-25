@@ -116,7 +116,7 @@ class Application extends Backbone.View
     
     # Adjust UI button
     bbox = bounds.toBBOX(4).split ','
-    text = "N: #{bbox[3]}, S: #{bbox[1]}, E: #{bbox[0]}, W: #{bbox[2]}"        
+    text = "N: #{bbox[3]}, S: #{bbox[1]}, E: #{bbox[2]}, W: #{bbox[0]}"        
     $('#define-map-area span').html "Defined Area: #{text}"    
     $('#define-map-area').toggleClass 'action-button-highlight' if changeHighlight
     $('#define-map-area div').addClass 'hidden'      
