@@ -118,12 +118,6 @@ class root.ActionsView extends Backbone.View
     resultLayer = map.getLayersByName('Result Area')[0]
     
     # Construct an OpenLayers.Bounds for this result
-    #geoExtent = @model.get('GeographicExtent')
-    #bounds = new OpenLayers.Bounds geoExtent.WestBound, geoExtent.SouthBound, geoExtent.EastBound, geoExtent.NorthBound    
-    
-    # Reproject the bounds to map projection, create styled feature
-    #geoProj = new OpenLayers.Projection 'EPSG:4326'
-    #bounds.transform geoProj, map.getProjectionObject()
     bounds = @model.getBounds map.getProjectionObject()
     style = 
       fillColor: '#EDF8FA'    # in search.less = @header-color
@@ -170,7 +164,12 @@ class root.ActionsView extends Backbone.View
         wmsLayer = new OpenLayers.Layer.WMS title, capabilities.request.getmap.href, wmsOptions, layerOptions
         map.addLayer wmsLayer
         map.zoomToExtent bounds
-    $.ajax opts      
+      error: (xhr, status, error) ->
+        console.log xhr
+        console.log status
+        console.log error
+      
+    $.xmlProxy opts      
     return 
     
   previewData: (evt) ->
@@ -207,9 +206,9 @@ class root.ActionsView extends Backbone.View
             detailsView = new root.DetailsView { model: tableModel }
             detailsView.render('preview')
             $('#feature-type-tabs li:first-child').click()
-        $.ajax opts         
+        $.xmlProxy opts         
         return
-    $.ajax opts
+    $.xmlProxy opts
     return
     
   addEsri: (evt) ->
@@ -297,6 +296,11 @@ class root.DetailsView extends Backbone.View
     $(evt.currentTarget).addClass 'selected-tab'
     
     # Perform a GetFeature request
+    
+    # This XML request needs to be fed through a proxy, but I don't want to deal with the proxy on ALL OpenLayers requests
+    #   So, the OpenLayers.ProxyHost is set and removed within here
+    OpenLayers.ProxyHost = '/proxy?url='
+    
     featureType = _.find @model.get('featureTypes'), (type) ->
       return $(evt.currentTarget).attr('typeName') is "#{type.prefix}:#{type.name}"
     protocol = new OpenLayers.Protocol.WFS {
@@ -307,6 +311,8 @@ class root.DetailsView extends Backbone.View
     }
     result = protocol.read {       
       callback: (response) ->
+        OpenLayers.ProxyHost = ''
+        
         # Have to adjust features so that attributes are in the same order as the columns
         orderedFeature = (feature) ->
           attributes = []

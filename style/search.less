@@ -148,11 +148,6 @@ a img {
   padding-top: 20px;
 }
 
-.sidebar-link {
-  font-weight: bold;
-  
-}
-
 #left-sidebar {
   border-right: 1px solid @border-color;
   padding-right: 10px;
@@ -191,6 +186,13 @@ a img {
       color: @text-minor-emphasis-color;
       cursor: pointer;
       text-decoration: underline;
+    }
+  }
+  .main-sidebar-link {
+    .sidebar-link;
+    color: @highlight-color;
+    &:hover {
+      color: lighten(@highlight-color, 10%);
     }
   }
 }

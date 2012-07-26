@@ -2,6 +2,7 @@ root = exports ? this
 
 OpenLayers = if exports? then require('openlayers').OpenLayers else root.OpenLayers
 jade = if exports? then require 'jade' else root.require 'jade'
+$ = if exports? then require 'jquery' else root.$
 
 class Utils
   buildFilter: (keywords, bbox = null, asXml = true ) ->  
@@ -56,4 +57,9 @@ class root.Jade
     $.ajax options
   content: (context) ->
     return @jadeFn context
-  
+    
+$.xmlProxy = (options) ->
+  proxyBase = '/proxy?url='
+  options.url = "#{proxyBase}#{encodeURIComponent(options.url)}"
+  $.ajax options
+  return
