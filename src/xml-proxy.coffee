@@ -1,6 +1,7 @@
 root = exports
 
 request = require 'request'
+qs = require 'querystring'
 
 # Parser for application/xml POSTs
 # Modeled from https://github.com/senchalabs/connect/blob/1.9.1/lib/middleware/bodyParser.js
@@ -24,6 +25,12 @@ exports.xmlProxy = (req, res) ->
     res.status 400
     res.send 'Bad Request. No URL specified.'
     return
+  
+  # Check for additional query parameters that might be separated
+  filteredQuery = {}
+  for key, value of req.query when key isnt 'url'
+    filteredQuery[key] = value
+  url = "#{url}#{qs.stringify filteredQuery}"
   
   # Result depends on the request method  
   switch req.method.toUpperCase()

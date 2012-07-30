@@ -27,11 +27,11 @@ root.csw.getRecords = (rootUrl, options, limit=10, start=1, ogcFilter=null) ->
     reqParams.constraintLanguage = 'FILTER'
   
   params =
-    url: rootUrl
+    url: "#{rootUrl}?"
     type: 'GET'
     dataType: 'xml'
     data: _.extend defaultReqParams, reqParams
-  return $.ajax _.extend params, options
+  return $.xmlProxy _.extend params, options
   
 root.csw.getRecordById = (rootUrl, id, options) ->
 
@@ -44,7 +44,7 @@ root.csw.getRecordById = (rootUrl, id, options) ->
     type: 'GET'
     dataType: 'xml'
     data: _.extend defaultReqParams, reqParams
-  return $.ajax _.extend params, options
+  return $.xmlProxy _.extend params, options
 
 # jQuery plugin to help find things in ISO documents      
 $.fn.iso = (attribute) ->
