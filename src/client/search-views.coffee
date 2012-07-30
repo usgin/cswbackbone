@@ -160,7 +160,7 @@ class root.ActionsView extends Backbone.View
           layers: ( layer.name for layer in capabilities.layers when layer.name? and layer.name isnt '' ).join ','
         layerOptions =
           isBaseLayer: false
-          singleTile: true
+          #singleTile: true
         wmsLayer = new OpenLayers.Layer.WMS title, capabilities.request.getmap.href, wmsOptions, layerOptions
         map.addLayer wmsLayer
         map.zoomToExtent bounds
@@ -217,7 +217,7 @@ class root.ActionsView extends Backbone.View
       transparent: true
     layerOptions =
       isBaseLayer: false
-      singleTile: true
+      #singleTile: true
     title = "#{@model.get('Title')} ESRI"
     url = "#{$(evt.currentTarget).attr('link')}/export"
     esriLayer = new OpenLayers.Layer.ArcGIS93Rest title, url, reqOptions, layerOptions 
