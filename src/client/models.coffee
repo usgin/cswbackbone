@@ -115,7 +115,19 @@ class root.IsoMetadata extends Backbone.Model
     # Sort the Actions
     attributes.Actions = _.sortBy actions, (action) ->
       return action.order
-       
+    
+    # Find a simplified single author name
+    if attributes.Authors? and attributes.Authors.length > 0
+      name = attributes.Authors[0].Name
+      orgName = attributes.Authors[0].OrganizationName
+      if name? and name not in [ '', 'Missing', 'No Name Was Given' ]
+        attributes.authorName = name
+      else if orgName? and orgName not in [ '', 'Missing', 'No Name Was Given' ]
+        attributes.authorName = orgName
+      else
+        attributes.authorName = 'No Author Was Provided'
+    else
+      attributes.authorName = 'No Author Was Provided'
     return attributes
     
   getBounds: ( destinationProjection = null )->

@@ -1,15 +1,14 @@
-- var authorName = Authors != null && Authors.length > 0 && Authors[0].Name != '' && Authors[0].Name != 'Missing' ? Authors[0].Name : "No Author Provided " 
 .pointer.hidden
-	.left-arrow
-	.vertHelper
+  .left-arrow
+  .vertHelper
 dt
-	.result-title= Title
+  .result-title= Title
 dd
-	.result-description= Description.length > 225 ? Description.substring(0,255) + "..." : Description	
-	.result-info 
-		| By 
-		span.keyword= authorName 
-		|  - Published on #{pubDate} - Modified on #{modDate}
-	.result-keywords Keywords: 
-		for word in keywordList
-			span.keyword= word
+  .result-description= Description.length > 225 ? Description.substring(0,255) + "..." : Description  
+  .result-info 
+    | By 
+    span.keyword= authorName 
+    |  - Published on #{pubDate} - Modified on #{modDate}
+  .result-keywords Keywords: 
+    for word in keywordList
+      span.keyword= word
