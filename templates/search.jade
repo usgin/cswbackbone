@@ -1,23 +1,31 @@
 !!! 5
 html
-	head
-		title Catalog Search
-		link(rel="stylesheet/less", type="text/css", href="/style/search.less")
-		link(rel="stylesheet", type="text/css", href="/style/ol/theme/default/style.css")
-		
-		script(type="application/javascript", src="/lib/jquery-1.7.2.min.js")
-		script(type="application/javascript", src="/lib/underscore-1.3.3.min.js")
-		script(type="application/javascript", src="/lib/backbone-0.9.2.min.js")
-		script(type="application/javascript", src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7PsO6YhgzADcCjCScUdgezlc15dErEzA&sensor=false")		
-		script(type="application/javascript", src="/lib/openlayers-2.12-rc7.min.js")
-		script(type="application/javascript", src="/lib/less-1.3.0.min.js")
-		script(type="application/javascript", src="/lib/jade.js")
-		script(type="application/javascript", src="/site/utils.js")
-		script(type="application/javascript", src="/site/csw.js")
-		script(type="application/javascript", src="/site/models.js")
-		script(type="application/javascript", src="/site/search-router.js")
-		script(type="application/javascript", src="/site/search-views.js")
-		script(type="application/javascript", src="/site/search-app.js")
-	body
-		#app
-		//#footer Copyright Arizona Geological Survey 2012
+  head
+    title Catalog Search
+    link(rel="stylesheet/less", type="text/css", href="/style/search.less")
+    link(rel="stylesheet", type="text/css", href="/style/ol/theme/default/style.css")
+    
+    script(type="application/javascript", src="/lib/jquery-1.7.2.min.js")
+    script(type="application/javascript", src="/lib/underscore-1.3.3.min.js")
+    script(type="application/javascript", src="/lib/backbone-0.9.2.min.js")
+    script(type="application/javascript", src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD7PsO6YhgzADcCjCScUdgezlc15dErEzA&sensor=false")    
+    script(type="application/javascript", src="/lib/openlayers-2.12-rc7.min.js")
+    script(type="application/javascript", src="/lib/less-1.3.0.min.js")
+    script(type="application/javascript", src="/lib/jade.js")
+    script(type="application/javascript", src="/site/utils.js")
+    script(type="application/javascript", src="/site/csw.js")
+    script(type="application/javascript", src="/site/models.js")
+    script(type="application/javascript", src="/site/search-router.js")
+    script(type="application/javascript", src="/site/search-views.js")
+    script(type="application/javascript", src="/site/search-app.js")
+  body
+    #app
+    #footer 
+      span 
+        a(href="http://azgs.az.gov/") Copyright Arizona Geological Survey 2012
+      span  | 
+      span 
+        a(href="https://github.com/usgin/cswbackbone/issues") Issue Tracker
+      span  | 
+      span
+        a(href="http://stategeothermaldata.org") AASG State Geothermal Data System
