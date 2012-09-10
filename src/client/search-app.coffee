@@ -172,6 +172,7 @@ class Application extends Backbone.View
       start: start
       success: (set, xmlResponse) ->
         # Show the total number of results
+        $('#results-title').removeClass 'hidden'
         $('#result-count').removeClass 'hidden'
         $('#result-count').html "#{set.totalRecords} total results"
         
