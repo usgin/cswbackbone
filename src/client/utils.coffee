@@ -27,11 +27,11 @@ class Utils
         projection: 'EPSG:4326'
       return new OpenLayers.Filter.Spatial opts
     
-    if bbox?
+    if bbox? 
       filterOpts =
         type: OpenLayers.Filter.Logical.AND
         filters: [ keywordsClause(), bboxClause() ]
-      ogcFilter = new OpenLayers.Filter.Logical filterOpts
+      ogcFilter = if keywords.length is 1 and keywords[0] is '' then bboxClause() else new OpenLayers.Filter.Logical filterOpts
     else
       ogcFilter = keywordsClause()
           

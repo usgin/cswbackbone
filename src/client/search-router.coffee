@@ -7,6 +7,11 @@ class root.SearchRouter extends Backbone.Router
     ':keywords/bbox=:bbox': 'spatialSearch'
   
   keywordSearch: (keywords) ->
+    # Handle the case when there's no keywords but a bbox
+    if keywords.substr(0, 5) is 'bbox='
+      @spatialSearch '', keywords.substr 5
+      return
+    
     # Set the search bar to have the right keywords and perform the search
     $('#search-bar').val unescape keywords
     root.searchApp.performSearch()
