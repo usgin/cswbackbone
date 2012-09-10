@@ -19,7 +19,7 @@ server.configure ->
   server.use express.bodyParser()
   return
 
-# Search Intereface
+# Search Interface
 server.get '/', (req, res) ->
   res.render 'search'
 
