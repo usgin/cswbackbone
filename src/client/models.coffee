@@ -109,7 +109,8 @@ class root.IsoMetadata extends Backbone.Model
           buildAction type, 'Add ESRI Service to Map', link.URL, 3, false, 'add-esri'
         when 'USGIN-REPO'
           buildAction type, 'USGIN Doc Repository', link.URL, 6 
-        when 'FILE'
+        #when 'FILE' 
+        else # Any other link is treated the same as a Downloadable File
           buildAction type, link.Name or 'Downloadable File', link.URL, 7
     
     # Sort the Actions
