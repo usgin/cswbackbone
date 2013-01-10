@@ -6,7 +6,7 @@ Backbone = if exports? then require 'backbone' else root.Backbone
 csw = if exports? then require('./csw').csw else root.csw
 
 config = 
-  cswRootUrl: 'http://catalog.usgin.org/geoportal/csw'
+  cswRootUrl: 'http://catalog.stategeothermaldata.org/geoportal/csw'
 
 class root.IsoMetadata extends Backbone.Model
 
@@ -57,7 +57,7 @@ class root.IsoMetadata extends Backbone.Model
     # Prettify FUBARed Dates
     dateFromCrud = (crud) ->
       dateBits = crud.split('T')[0].split('-')      
-      theDate = new Date(dateBits[0], dateBits[1], dateBits[2])
+      theDate = new Date(dateBits[0], dateBits[1] - 1, dateBits[2])
       return theDate.toDateString()
     attributes.pubDate = dateFromCrud attributes.PublicationDate
     attributes.modDate = dateFromCrud attributes.ModifiedDate
